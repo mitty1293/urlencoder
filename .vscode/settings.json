@@ -4,8 +4,8 @@
     "editor.formatOnSave": true,
     "python.linting.flake8Enabled": true,
     "python.linting.flake8Args": [
-        "--ignore=E203",
-        "--max-line-length=88"
+        "--max-line-length=119",
+        "--ignore=E203"
     ],
     "editor.codeActionsOnSave": {
         "source.organizeImports": true
