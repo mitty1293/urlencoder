@@ -5,4 +5,6 @@ services:
             context: ./
             dockerfile: Dockerfile
             target: production
+        image: urlencoder_prod
+        container_name: urlencoder_prod
         tty: true

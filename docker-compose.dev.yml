@@ -5,6 +5,8 @@ services:
             context: ./
             dockerfile: Dockerfile
             target: development
+        image: urlencoder_dev
+        container_name: urlencoder_dev
         volumes:
             - ./:/app
         tty: true

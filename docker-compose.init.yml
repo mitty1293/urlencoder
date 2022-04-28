@@ -5,6 +5,8 @@ services:
             context: ./
             dockerfile: Dockerfile
             target: initial
+        image: urlencoder_init
+        container_name: urlencoder_init
         volumes:
             - ./:/opt/pysetup
         tty: true
