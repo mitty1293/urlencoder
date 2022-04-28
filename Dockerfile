@@ -5,7 +5,7 @@ ENV PYTHONUNBUFFERED=1 \
     POETRY_HOME="/opt/poetry" \
     POETRY_VIRTUALENVS_CREATE=false \
     PYSETUP_PATH="/opt/pysetup"
-ENV PATH="${POETRY_HOME}/bin:$PATH"
+ENV PATH="$POETRY_HOME/bin:$PATH"
 
 FROM python-base as initial
 RUN apt update \
@@ -13,13 +13,15 @@ RUN apt update \
     curl \
     git
 RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
+WORKDIR $PYSETUP_PATH
 
 FROM initial as development
 COPY poetry.lock pyproject.toml ./
-RUN poetry install -u
+RUN poetry install --no-interaction
+WORKDIR /app
 
 FROM initial as production-builder
 COPY poetry.lock pyproject.toml ./
-RUN poetry install -u --no-dev
+RUN poetry install --no-interaction --no-dev
 
 FROM production-builder as production
