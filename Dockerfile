@@ -24,4 +24,7 @@ FROM initial as production-builder
 COPY poetry.lock pyproject.toml ./
 RUN poetry install --no-interaction --no-dev
 
-FROM production-builder as production
+FROM python-base as production
+COPY --from=production-builder /usr/local/lib/python3.10/site-packages /usr/local/lib/python3.10/site-packages
+COPY ./urlencoder /app/urlencoder
+WORKDIR /app/urlencoder
