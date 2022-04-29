@@ -16,7 +16,8 @@ RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-
 WORKDIR $PYSETUP_PATH
 
 FROM initial as development
-ENV FLASK_CONFIG_TYPE="development"
+ENV FLASK_ENV=development
+ENV FLASK_APP=urlencoder.application:app
 COPY poetry.lock pyproject.toml ./
 RUN poetry install --no-interaction
 WORKDIR /app

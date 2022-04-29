@@ -5,7 +5,7 @@ from flask import Flask, render_template
 
 # Configure logging
 basicConfig(
-    filename="./logs/app.log",
+    filename="/app/urlencoder/logs/app.log",
     level=DEBUG,
     format="%(asctime)s\t%(levelname)s\t%(filename)s\t%(module)s\tline:%(lineno)d\t%(message)s",
 )
@@ -15,7 +15,7 @@ app = Flask(__name__, instance_path="/run/secrets", instance_relative_config=Tru
 
 # Load the conig
 config_type = {
-    "development": "config.DevelopmentConfig",
-    "production": "config.ProductionConfig",
+    "development": "urlencoder.config.DevelopmentConfig",
+    "production": "urlencoder.config.ProductionConfig",
 }
-app.config.from_object(config_type.get(os.getenv("FLASK_CONFIG_TYPE", "production")))
+app.config.from_object(config_type.get(os.getenv("FLASK_ENV", "production")))
