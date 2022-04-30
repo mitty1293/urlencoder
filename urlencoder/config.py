@@ -1,6 +1,3 @@
-from logging import DEBUG, WARNING
-
-
 class CommonConfig(object):
     pass
 
