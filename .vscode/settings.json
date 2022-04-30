@@ -10,4 +10,5 @@
     "editor.codeActionsOnSave": {
         "source.organizeImports": true
     },
+    "html.format.indentInnerHtml": true,
 }
