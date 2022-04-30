@@ -1,7 +1,7 @@
 import os
 from logging import basicConfig
 
-from flask import Flask, render_template
+from flask import Flask, redirect, render_template, request, url_for
 
 # Configure logging
 # If FLASK_ENV=production, then level=WARNING
@@ -21,7 +21,21 @@ config_type = {
 }
 app.config.from_object(config_type.get(os.getenv("FLASK_ENV", "production")))
 
-
-@app.route("/")
+# Routing
+@app.route("/", methods=["GET", "POST"])
 def index():
-    return render_template("index.html")
+    # GET
+    if request.method == "GET":
+        return render_template("index.html")
+
+    # POST
+    req_dict = request.form.to_dict()
+    if "encode_btn" in req_dict.keys():
+        # Encode
+        outputtext = f"Encode {req_dict.get('inputtext')}"
+        app.logger.debug(outputtext)
+    elif "decode_btn" in req_dict.keys():
+        # Decode
+        outputtext = f"Decode {req_dict.get('inputtext')}"
+        app.logger.debug(outputtext)
+    return render_template("index.html", outputtext=outputtext)
