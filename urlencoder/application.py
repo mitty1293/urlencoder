@@ -23,5 +23,5 @@ app.config.from_object(config_type.get(os.getenv("FLASK_ENV", "production")))
 
 
 @app.route("/")
-def hello_world():
-    return "<p>Hello, World!</p>"
+def index():
+    return render_template("index.html")
