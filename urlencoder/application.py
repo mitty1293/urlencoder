@@ -1,7 +1,8 @@
 import os
+import urllib.parse
 from logging import basicConfig
 
-from flask import Flask, redirect, render_template, request, url_for
+from flask import Flask, render_template, request
 
 # Configure logging
 # If FLASK_ENV=production, then level=WARNING
@@ -21,6 +22,7 @@ config_type = {
 }
 app.config.from_object(config_type.get(os.getenv("FLASK_ENV", "production")))
 
+
 # Routing
 @app.route("/", methods=["GET", "POST"])
 def index():
@@ -30,12 +32,11 @@ def index():
 
     # POST
     req_dict = request.form.to_dict()
+    inputtext = req_dict.get("inputtext")
     if "encode_btn" in req_dict.keys():
         # Encode
-        outputtext = f"Encode {req_dict.get('inputtext')}"
-        app.logger.debug(outputtext)
+        outputtext = urllib.parse.quote(inputtext, safe=":/")
     elif "decode_btn" in req_dict.keys():
         # Decode
-        outputtext = f"Decode {req_dict.get('inputtext')}"
-        app.logger.debug(outputtext)
-    return render_template("index.html", outputtext=outputtext)
+        outputtext = urllib.parse.unquote(inputtext)
+    return render_template("index.html", inputtext=inputtext, outputtext=outputtext)
