@@ -1,0 +1,25 @@
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Raleway", "Aria", "Yu Gothic", sans-serif;
+}
+
+.github_link {
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+a {
+    color: #5c7a73;
+    text-decoration: none;
+}
+
+a:hover,
+a:focus {
+    color: #232e2b;
+    text-decoration: underline;
+}
