@@ -27,6 +27,8 @@ COPY poetry.lock pyproject.toml ./
 RUN poetry install --no-interaction --no-dev
 
 FROM python-base as production
+ENV FLASK_ENV=production
+ENV FLASK_APP=urlencoder.application:app
 COPY --from=production-builder /usr/local/lib/python3.10/site-packages /usr/local/lib/python3.10/site-packages
 COPY ./urlencoder /app/urlencoder
 WORKDIR /app/urlencoder
