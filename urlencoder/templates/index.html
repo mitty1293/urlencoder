@@ -21,22 +21,26 @@
                 <p class="lead">Encode and decode a string of text</p>
             </div>
             <form action="/" method="post">
-                <div class="row">
-                    <div class="form-floating col-sm-5">
-                        <textarea id="inputtext" name="inputtext" class="form-control" type="text" placeholder="text" required></textarea>
-                        <label for="inputtext">Enter the text</label>
-                    </div>
-                    <div class="col-sm-2 text-center">
-                        <div class="btn-group-vertical">
-                            <button id="encode_btn" name="encode_btn" class="btn btn-outline-secondary" type="submit">Encode</button>
-                            <button id="decode_btn" name="decode_btn" class="btn btn-outline-secondary" type="submit">Decode</button>
-                        </div>
-                    </div>
-                    <div class="form-floating col-sm-5">
-                        <textarea id="outputtext" name="outputtext" class="form-control" type="text" placeholder="text" readonly>{{outputtext}}</textarea>
-                        <label for="outputtext">Result</label>
+                <!-- <div class="row"> -->
+                <div class="form-floating">
+                    <textarea id="inputtext" name="inputtext" class="form-control" type="text" placeholder="text" required></textarea>
+                    <label for="inputtext">Enter the text</label>
+                </div>
+                <!-- </div> -->
+                <!-- <div class="row"> -->
+                <div class="text-center">
+                    <div class="btn-group">
+                        <button id="encode_btn" name="encode_btn" class="btn btn-outline-secondary" type="submit">Encode</button>
+                        <button id="decode_btn" name="decode_btn" class="btn btn-outline-secondary" type="submit">Decode</button>
                     </div>
                 </div>
+                <!-- </div> -->
+                <!-- <div class="row"> -->
+                <div class="form-floating">
+                    <textarea id="outputtext" name="outputtext" class="form-control" type="text" placeholder="text" readonly>{{outputtext}}</textarea>
+                    <label for="outputtext">Result</label>
+                </div>
+                <!-- </div> -->
             </form>
             <div class="github_link py-4">
                 <a href="https://github.com/mitty1293/urlencoder" target="_blank">
