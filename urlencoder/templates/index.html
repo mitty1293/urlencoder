@@ -26,9 +26,11 @@
                         <textarea id="inputtext" name="inputtext" class="form-control" type="text" placeholder="text" required></textarea>
                         <label for="inputtext">Enter the text</label>
                     </div>
-                    <div class="col-sm-2">
-                        <button id="encode_btn" name="encode_btn" class="btn btn-outline-secondary" type="submit">Encode</button>
-                        <button id="decode_btn" name="decode_btn" class="btn btn-outline-secondary" type="submit">Decode</button>
+                    <div class="col-sm-2 text-center">
+                        <div class="btn-group-vertical">
+                            <button id="encode_btn" name="encode_btn" class="btn btn-outline-secondary" type="submit">Encode</button>
+                            <button id="decode_btn" name="decode_btn" class="btn btn-outline-secondary" type="submit">Decode</button>
+                        </div>
                     </div>
                     <div class="form-floating col-sm-5">
                         <textarea id="outputtext" name="outputtext" class="form-control" type="text" placeholder="text" readonly>{{outputtext}}</textarea>
