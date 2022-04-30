@@ -1,13 +1,17 @@
+from logging import DEBUG, WARNING
+
+
 class CommonConfig(object):
-    # DEBUG = False
     pass
 
 
 class DevelopmentConfig(CommonConfig):
-    # DEBUG = True
     pass
 
 
 class ProductionConfig(CommonConfig):
-    # DEBUG = False
+    pass
+
+
+class TestConfig(CommonConfig):
     pass
