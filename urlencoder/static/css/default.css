@@ -8,9 +8,8 @@ body {
     font-family: "Raleway", "Aria", "Yu Gothic", sans-serif;
 }
 
-.github_link {
-    text-align: center;
-    margin-top: 1.5rem;
+textarea {
+    font-family: SFMono-Regular, Menlo, Monaco, Consolas;
 }
 
 a {
