@@ -1,4 +1,5 @@
 # urlencoder
+Encode and decode a string of text
 ## Setup
 ### initial
 ```
