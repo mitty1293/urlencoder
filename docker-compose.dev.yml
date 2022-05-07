@@ -12,4 +12,4 @@ services:
         # volumes:
         #     - ./:/app
         tty: true
-        # command: flask run --host 0.0.0.0 --port 5000
+        command: poetry run flask run

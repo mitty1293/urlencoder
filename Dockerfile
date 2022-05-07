@@ -20,8 +20,8 @@ RUN apt update \
 RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
 ENV PATH="${POETRY_HOME}/bin:$PATH"
 WORKDIR ${APP_PATH}
-# COPY poetry.lock pyproject.toml ./
-COPY ./ ./
+COPY poetry.lock pyproject.toml ./
+# COPY ./ ./
 
 #
 # development stage
@@ -36,11 +36,13 @@ ENV FLASK_ENV=development \
     FLASK_APP=${APP_NAME}.application:app \
     FLASK_RUN_HOST=0.0.0.0 \
     FLASK_RUN_PORT=5000
-ENTRYPOINT [ "poetry", "run" ]
-CMD [ "flask", "run" ]
+# ENTRYPOINT [ "poetry", "run" ]
+# CMD [ "flask", "run" ]
+
 # venvが作られた後、volume設定で上書きされてしまいvenvが消える。よってflaskが存在しないので実行できない。
 # volume設定せずに全部dockerfileでcopyすれば上手く実行できる。
 # 本番ならそれで良いが、開発ではvolume設定したい。上書きせずに済む方法はないだろうか？
+# dockerfileでflask runせずにcomposeでflask runすれば行けると思うのでとりあえずそれで。
 
 
 #
