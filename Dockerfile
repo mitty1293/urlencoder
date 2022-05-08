@@ -70,7 +70,4 @@ ENV FLASK_ENV=production
 ENV GUNICORN_PORT=8000
 ENV APP_NAME=${APP_NAME}
 COPY ./urlencoder/logs/app.log /app/urlencoder/logs/app.log
-
-# ↓OK
-# CMD /usr/local/bin/gunicorn --bind 0.0.0.0:${GUNICORN_PORT} --workers 2 --timeout 60 --reload ${APP_NAME}.application:app
-CMD ["/usr/local/bin/gunicorn", "--bind", "0.0.0.0:$GUNICORN_PORT", "--workers", "2", "--timeout", "60", "$APP_NAME.application:app"]
+CMD ["sh", "-c", "/usr/local/bin/gunicorn --bind 0.0.0.0:${GUNICORN_PORT} --workers 2 --timeout 60 ${APP_NAME}.application:app"]
