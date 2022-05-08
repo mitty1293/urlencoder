@@ -9,7 +9,6 @@ services:
         container_name: urlencoder_dev
         ports:
             - "5000:5000"
-        # volumes:
-        #     - ./:/app
+        volumes:
+            - ./:/app
         tty: true
-        # command: poetry run flask run

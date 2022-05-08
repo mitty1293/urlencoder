@@ -11,8 +11,7 @@ ENV PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1 \
     POETRY_VERSION=1.1.13 \
     POETRY_HOME="/opt/poetry" \
-    POETRY_VIRTUALENVS_CREATE=true \
-    POETRY_VIRTUALENVS_IN_PROJECT=true
+    POETRY_VIRTUALENVS_CREATE=true
 # install poetry and update PATH
 RUN apt update \
     && apt install --no-install-recommends -y \
@@ -22,7 +21,6 @@ RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-
 ENV PATH="${POETRY_HOME}/bin:$PATH"
 # import project files
 WORKDIR ${APP_PATH}
-COPY poetry.lock pyproject.toml ./
 
 #
 # development stage
@@ -32,9 +30,10 @@ ARG APP_NAME
 ARG APP_PATH
 # install dependencies
 WORKDIR ${APP_PATH}
+COPY ./poetry.lock ./pyproject.toml ./
+# COPY ./ ./
 RUN poetry install --no-interaction
-# start the flask development server
-COPY ./ ./
+# setup flask environment variables
 ENV FLASK_ENV=development \
     FLASK_APP=${APP_NAME}.application:app \
     FLASK_RUN_HOST=0.0.0.0 \
@@ -46,8 +45,10 @@ CMD [ "flask", "run" ]
 # builder stage
 #
 FROM initial as production-builder
+ARG APP_NAME
 ARG APP_PATH
 WORKDIR ${APP_PATH}
+COPY ./poetry.lock ./pyproject.toml ./
 COPY ./${APP_NAME} ./${APP_NAME}
 RUN poetry build --format wheel
 RUN poetry export --format requirements.txt --output constraints.txt --without-hashes
