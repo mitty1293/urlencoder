@@ -12,4 +12,4 @@ services:
         # volumes:
         #     - ./:/app
         tty: true
-        command: poetry run flask run
+        # command: poetry run flask run
