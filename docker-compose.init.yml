@@ -8,5 +8,5 @@ services:
         image: urlencoder_init
         container_name: urlencoder_init
         volumes:
-            - ./:/opt/pysetup
+            - ./:/app
         tty: true
