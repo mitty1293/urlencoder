@@ -9,4 +9,6 @@ services:
         container_name: urlencoder_prod
         ports:
             - "8000:8000"
+        volumes:
+            - ./logs:/app/logs
         tty: true
