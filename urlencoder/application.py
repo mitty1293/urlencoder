@@ -8,7 +8,7 @@ from flask import Flask, render_template, request
 # If FLASK_ENV=production, then level=WARNING
 # If FLASK_ENV=development, then level=DEBUG
 basicConfig(
-    filename="/app/urlencoder/logs/app.log",
+    filename="/app/logs/urlencoder.log",
     format="%(asctime)s\t%(levelname)s\t%(filename)s\t%(module)s\tline:%(lineno)d\t%(message)s",
 )
 
