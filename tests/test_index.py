@@ -18,12 +18,16 @@ text_list = [
 @pytest.mark.parametrize(("input", "output"), text_list)
 def test_index_post_encode(input, output):
     app.config["TESTING"] = True
-    rv = app.test_client().post("/", data=dict(inputtext=input, encode_btn=""))
-    assert output.encode() in rv.data
+    rv = app.test_client().post(
+        "/", data=dict(inputtext=input, encode_btn="", outputtext="")
+    )
+    assert output in rv.data.decode()
 
 
 @pytest.mark.parametrize(("output", "input"), text_list)
 def test_index_post_decode(output, input):
     app.config["TESTING"] = True
-    rv = app.test_client().post("/", data=dict(inputtext=input, decode_btn=""))
-    assert output.encode() in rv.data
+    rv = app.test_client().post(
+        "/", data=dict(inputtext=input, decode_btn="", outputtext="")
+    )
+    assert output in rv.data.decode()

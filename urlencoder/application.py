@@ -5,8 +5,6 @@ from logging import basicConfig
 from flask import Flask, render_template, request
 
 # Configure logging
-# If FLASK_ENV=production, then level=WARNING
-# If FLASK_ENV=development, then level=DEBUG
 basicConfig(
     filename="/app/logs/urlencoder.log",
     format="%(asctime)s\t%(levelname)s\t%(filename)s\t%(module)s\tline:%(lineno)d\t%(message)s",
@@ -31,12 +29,11 @@ def index():
         return render_template("index.html")
 
     # POST
-    req_dict = request.form.to_dict()
-    inputtext = req_dict.get("inputtext")
-    if "encode_btn" in req_dict.keys():
+    match request.form.to_dict():
         # Encode
-        outputtext = urllib.parse.quote(inputtext, safe=":/")
-    elif "decode_btn" in req_dict.keys():
+        case {'inputtext': inputtext, 'encode_btn': encode_btn, 'outputtext': outputtext}:
+            outputtext = urllib.parse.quote(inputtext, safe=":/")
         # Decode
-        outputtext = urllib.parse.unquote(inputtext)
+        case {'inputtext': inputtext, 'decode_btn': decode_btn, 'outputtext': outputtext}:
+            outputtext = urllib.parse.unquote(inputtext)
     return render_template("index.html", inputtext=inputtext, outputtext=outputtext)
