@@ -30,8 +30,10 @@ def index():
 
     # POST
     match request.form.to_dict():
+        # Encode
         case {'inputtext': inputtext, 'encode_btn': encode_btn, 'outputtext': outputtext}:
             outputtext = urllib.parse.quote(inputtext, safe=":/")
+        # Decode
         case {'inputtext': inputtext, 'decode_btn': decode_btn, 'outputtext': outputtext}:
             outputtext = urllib.parse.unquote(inputtext)
     return render_template("index.html", inputtext=inputtext, outputtext=outputtext)
