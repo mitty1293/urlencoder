@@ -1,6 +1,8 @@
 # urlencoder
 Encode and decode a string of text
-## Setup
+
+Access http://urlencoder.fmitty.net/, type or paste your input data and press the encode/decode button.
+## Self hosting
 ### production
 ```
 docker-compose -f docker-compose.prod.yml up -d
