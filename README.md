@@ -13,7 +13,7 @@ If you want to change the port number, change the environment variable `GUNICORN
 ```
 docker-compose -f docker-compose.dev.yml up -d
 ```
-Go to `http://localhost:5000`, you can access the development environment.
+Go to `http://host-ip:5000`, you can access the development environment.
 If you want to change the port number, change the environment variable `FLASK_RUN_PORT` in Dockerfile.
 ### initial
 ```
