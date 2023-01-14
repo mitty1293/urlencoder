@@ -1,0 +1,23 @@
+version: '3.9'
+services:
+    app:
+        build:
+            context: ./
+            dockerfile: Dockerfile
+            target: production
+        image: urlencoder_prod
+        container_name: urlencoder_prod
+        volumes:
+            - ./logs:/app/logs
+        tty: true
+        networks:
+            - traefik_reverse_proxy_network
+        labels:
+            - traefik.enable=true
+            - traefik.http.routers.urlencoder.entrypoints=websecure
+            - traefik.http.routers.urlencoder.rule=Host(`urlencoder.${DOMAIN}`)
+            - traefik.http.routers.urlencoder.tls.certresolver=myresolver
+            - traefik.http.services.urlencoder.loadbalancer.server.port=8000
+networks:
+    traefik_reverse_proxy_network:
+        external: true
